@@ -6,6 +6,12 @@ A modern, responsive real estate property finder web application built with Next
 
 Emaar is a comprehensive real estate platform that allows users to browse properties, explore popular locations, and discover their dream homes. The application features a clean, modern interface with smooth animations, responsive design, and an intuitive user experience.
 
+### Live Demo
+
+🌐 **Live Version**: [izonefitness.com](https://izonefitness.com)
+
+The published and deployed version of this application is available at the above URL.
+
 ### Assignment Context
 
 This project was developed as part of a technical assessment to evaluate:
