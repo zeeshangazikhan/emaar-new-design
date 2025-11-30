@@ -33,6 +33,7 @@ This project was developed as part of a technical assessment to evaluate:
 - **Responsive Design**: Fully responsive across all device sizes (mobile, tablet, desktop)
 - **Modern UI Components**: Built with Radix UI and shadcn/ui components
 - **Smooth Animations**: Tailwind CSS animations for enhanced user experience
+- **Hero Section Design**: A meticulously crafted hero section that solves a critical UX problem. The design supports both static images and dynamic video backgrounds (currently using optimized images as placeholders). The key innovation is the dual-focus layout that ensures both the engaging background media and the booking engine (property search form) remain prominently visible simultaneously. This addresses a fundamental issue in the original design where the booking engine was not clearly visible, causing users to lose interest and leave without engaging. The new design uses strategic z-index layering, responsive flexbox layouts, and semi-transparent overlays to maintain visual hierarchy while ensuring the primary conversion element (booking engine) is always accessible. The layout adapts seamlessly from side-by-side desktop view to stacked mobile view, ensuring optimal user experience across all devices.
 - **Dark Mode Ready**: Theme provider setup for dark mode support
 - **Accessibility**: ARIA-compliant components for better accessibility
 - **Performance Optimized**: Static export ready for fast loading times
@@ -170,10 +171,70 @@ The project follows **Atomic Design Principles**:
 - User actions (login, signup)
 
 ### Hero Section
-- Eye-catching hero banner
-- Call-to-action buttons
-- Property search form
-- Engaging visuals
+
+The Hero Section is one of the most critical components of the application, designed with careful attention to user engagement and conversion optimization.
+
+#### Design Philosophy
+
+The hero section addresses a fundamental UX challenge: maintaining user interest while ensuring the booking engine (property search form) remains prominently visible and accessible. In the original design, the booking engine was not clearly visible, which led to users losing interest and leaving the page without engaging with the primary call-to-action.
+
+#### Technical Implementation
+
+**Background Media Support:**
+- The hero section is architected to support both static images and dynamic video backgrounds
+- Currently implemented with high-quality images as placeholders (`/images/findhouses4.jpg`)
+- The component structure allows for seamless replacement of the `<Image>` component with a `<video>` element when video assets are available
+- Background media is optimized with Next.js Image component for performance (priority loading, quality optimization)
+- A semi-transparent dark overlay (`bg-black/60`) is applied to ensure text and form elements remain readable over any background media
+
+**Layout Structure:**
+- Full-screen hero section (`min-h-screen`) that creates an immersive first impression
+- Responsive flexbox layout that adapts from side-by-side (desktop) to stacked (mobile) design
+- Maximum width container (`max-w-[1400px]`) ensures content doesn't stretch too wide on large screens
+- Strategic z-index layering: background (z-0), content (z-10) ensures proper visual hierarchy
+
+**Content Distribution:**
+- **Left Side (HeroContent)**: 
+  - Compelling headline that immediately communicates value proposition
+  - Descriptive text highlighting key statistics (400,000+ listings)
+  - Primary call-to-action button ("Get Started")
+  - Maximum width constraint ensures readability and prevents text from becoming too wide
+  
+- **Right Side (PropertySearchForm - Booking Engine)**:
+  - Prominently positioned booking/search form
+  - Always visible and accessible without scrolling
+  - Integrated seamlessly with the hero content
+  - Maintains visual balance with the content on the left
+
+#### Design Decisions
+
+1. **Dual Focus Strategy**: Unlike traditional hero sections that prioritize either media or content, this design ensures both the engaging background media AND the booking engine receive equal visual weight. This prevents users from getting distracted by beautiful visuals while missing the primary conversion element.
+
+2. **Responsive Behavior**: 
+   - Desktop: Side-by-side layout allows users to see both content and booking engine simultaneously
+   - Mobile/Tablet: Stacked layout ensures booking engine appears immediately after hero content, maintaining visibility
+
+3. **Visual Hierarchy**: The dark overlay (60% opacity) creates sufficient contrast to make white text and form elements stand out, while still allowing the background media to create an emotional connection with users.
+
+4. **Performance Optimization**: Background images use Next.js Image optimization with priority loading, ensuring the hero section loads quickly and doesn't impact Core Web Vitals.
+
+#### Problem Solved
+
+The original design had a critical flaw: users would see beautiful background imagery but the booking engine was either hidden, too small, or required scrolling to access. This led to:
+- High bounce rates
+- Low conversion rates
+- Users leaving without engaging with the search functionality
+- Lost business opportunities
+
+The new design ensures:
+- Booking engine is immediately visible on page load
+- Users can engage with search functionality without scrolling
+- Background media enhances rather than distracts from the primary goal
+- Better user engagement and higher conversion potential
+
+#### Future Enhancements
+
+When video assets are available, the implementation can be easily upgraded by replacing the Image component with a video element, maintaining all existing layout and functionality while adding the dynamic, engaging quality of video backgrounds.
 
 ### Properties Section
 - Property listings grid
