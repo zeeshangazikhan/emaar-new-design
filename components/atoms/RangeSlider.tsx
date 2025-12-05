@@ -59,26 +59,28 @@ export const RangeSlider = ({ label, minValue, maxValue, min, max, onChange }: R
             <input
               type="range"
               min={min}
-              max={maxValue}
+              max={max}
               step={1000}
               value={minValue}
               onChange={(e) => {
                 const v = Number(e.target.value)
-                const newMin = Math.min(v, maxValue)
-                onChange(newMin, maxValue)
+                if (v <= maxValue) {
+                  onChange(v, maxValue)
+                }
               }}
               onMouseDown={() => setActive("min")}
               onTouchStart={() => setActive("min")}
-              onMouseUp={() => setActive(null)}
-              onTouchEnd={() => setActive(null)}
               aria-label={`${label} minimum`}
-              style={{ zIndex: active === "min" ? 30 : 10 }}
+              style={{ 
+                zIndex: active === "min" ? 50 : 25,
+                clipPath: `inset(0 ${100 - maxPercent}% 0 0)`
+              }}
               className="absolute inset-0 w-full h-full appearance-none bg-transparent pointer-events-auto opacity-0 cursor-pointer"
             />
 
             <input
               type="range"
-              min={minValue}
+              min={min}
               max={max}
               step={1000}
               value={maxValue}
@@ -90,10 +92,11 @@ export const RangeSlider = ({ label, minValue, maxValue, min, max, onChange }: R
               }}
               onMouseDown={() => setActive("max")}
               onTouchStart={() => setActive("max")}
-              onMouseUp={() => setActive(null)}
-              onTouchEnd={() => setActive(null)}
               aria-label={`${label} maximum`}
-              style={{ zIndex: active === "max" ? 30 : 20 }}
+              style={{ 
+                zIndex: active === "max" ? 50 : 25,
+                clipPath: `inset(0 0 0 ${minPercent}%)`
+              }}
               className="absolute inset-0 w-full h-full appearance-none bg-transparent pointer-events-auto opacity-0 cursor-pointer"
             />
           </div>

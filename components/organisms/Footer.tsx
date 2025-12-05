@@ -120,13 +120,13 @@ export const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
             <p className="text-sm text-gray-400 mb-4">Sign up for the latest news</p>
-            <div className="flex gap-2 mb-4">
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <input
                 type="email"
                 placeholder="Email Address"
-                className="flex-1 px-4 py-2 rounded-full bg-white/10 border border-gray-600 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1D48B5]"
+                className="w-full px-4 py-2 rounded-full bg-white/10 border border-gray-600 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#1D48B5]"
               />
-              <button className="px-6 py-2 bg-[#1D48B5] text-white rounded-full text-sm font-medium hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5] transition-all duration-300">
+              <button className="w-auto self-start sm:self-auto px-5 py-2 bg-[#1D48B5] text-white rounded-full text-sm font-medium hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5] transition-all duration-300">
                 Subscribe
               </button>
             </div>

@@ -123,3 +123,69 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations and helpers */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 600ms ease forwards;
+}
+
+.hover-tilt {
+  transition: transform 400ms cubic-bezier(.2,.9,.2,1), box-shadow 400ms ease;
+}
+.hover-tilt:hover {
+  transform: translateY(-6px) rotate(-1deg) scale(1.02);
+}
+
+.glow-cta {
+  box-shadow: 0 8px 30px rgba(29,72,181,0.18), inset 0 -2px 0 rgba(255,255,255,0.03);
+}
+
+/* Sheen animation for CTAs */
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%) skewX(-10deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(120%) skewX(-10deg);
+    opacity: 0;
+  }
+}
+
+.sheen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 28%;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-120%) skewX(-10deg);
+}
+
+.sheen-animate {
+  animation: sheen 900ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+/* trigger sheen on group hover */
+.group:hover .sheen {
+  animation: sheen 900ms cubic-bezier(.2,.9,.2,1) forwards;
+  opacity: 0.9;
+}
+

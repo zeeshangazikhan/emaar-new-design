@@ -22,11 +22,13 @@ export const Button = ({
   type = "button",
 }: ButtonProps) => {
   const baseStyles =
-    "inline-flex items-center justify-center cursor-pointer border-none outline-none font-medium transition-all duration-300"
+    "inline-flex items-center justify-center cursor-pointer border-none outline-none font-medium transition-all duration-300 relative overflow-hidden group will-change-transform"
 
   const variantStyles = {
-    primary: "bg-[#1D48B5] text-white rounded-full hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5]",
-    outline: "bg-transparent text-[#1D48B5] border-2 border-[#1D48B5] rounded hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5] hover:text-white",
+    primary:
+      "bg-gradient-to-r from-[#1D48B5] to-[#153A8F] text-white rounded-full shadow-md hover:shadow-2xl hover:scale-105 transform-gpu focus-visible:ring-4 focus-visible:ring-[#153A8F]/30 glow-cta",
+    outline:
+      "bg-transparent text-[#1D48B5] border-2 border-[#1D48B5] rounded hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5] hover:text-white",
   }
 
   const sizeStyles = {
@@ -41,10 +43,14 @@ export const Button = ({
         ${baseStyles} 
         ${variantStyles[variant]} 
         ${sizeStyles[size]}
-        ${fullWidth ? "w-full" : ""}
+        ${fullWidth ? "w-full" : "inline-flex"}
       `}
       onClick={onClick}
     >
+      {/* Sheen overlay for primary CTA */}
+      {variant === "primary" && (
+        <span className="sheen" aria-hidden />
+      )}
       {children}
       {icon && <span className="ml-2 w-4 h-4">{icon}</span>}
     </button>

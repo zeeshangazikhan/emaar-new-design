@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "export": "next build",
+    "build": "next build && next export",
+    "export": "next export",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "npx serve@latest out -s",
+    "serve": "npx serve@latest out -s"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

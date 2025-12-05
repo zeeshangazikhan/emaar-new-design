@@ -66,11 +66,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           </ul>
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t">
-          <button className="w-full py-3 bg-[#1D48B5] text-white rounded-full font-medium hover:bg-gradient-to-r hover:from-[#153a8f] hover:to-[#1D48B5] transition-all duration-300">
-            Add Listing
-          </button>
-        </div>
+        {/* Add Listing removed for mobile */}
       </div>
     </>
   )

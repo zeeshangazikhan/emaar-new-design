@@ -4,6 +4,7 @@ import { useState } from "react"
 import { PropertyCard } from "../molecules/PropertyCard"
 import { SectionTitle } from "../atoms/SectionTitle"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "../atoms/Button"
 
 interface PropertiesSectionProps {
   type: "sale" | "rent"
@@ -103,6 +104,7 @@ const properties = [
 
 export const PropertiesSection = ({ type }: PropertiesSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [showAllMobile, setShowAllMobile] = useState(false)
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? properties.length - 1 : prev - 1))
@@ -121,8 +123,8 @@ export const PropertiesSection = ({ type }: PropertiesSectionProps) => {
         />
 
         <div className="relative">
-          {/* Show exactly 3 items in view, sliding by index (wraps around) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop / large screens: Show exactly 3 items in view, sliding by index (wraps around) */}
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: Math.min(3, properties.length) }).map((_, i) => {
               const index = (currentIndex + i) % properties.length
               const property = properties[index]
@@ -130,7 +132,14 @@ export const PropertiesSection = ({ type }: PropertiesSectionProps) => {
             })}
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Mobile / small screens: show a simple list and allow "View more" to expand */}
+          <div className="grid grid-cols-1 gap-6 lg:hidden">
+            {(showAllMobile ? properties : properties.slice(0, 3)).map((property) => (
+              <PropertyCard key={property.id} {...property} type={type} />
+            ))}
+          </div>
+
+          {/* Navigation Arrows (desktop only) */}
           <button
             onClick={handlePrev}
             className="absolute left-[-50px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#1D48B5] hover:text-white transition-colors max-lg:hidden cursor-pointer"
@@ -147,8 +156,8 @@ export const PropertiesSection = ({ type }: PropertiesSectionProps) => {
           </button>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        {/* Pagination Dots (desktop only) */}
+        <div className="hidden lg:flex justify-center gap-2 mt-8">
           {properties.map((_, index) => (
             <button
               key={index}
@@ -159,6 +168,13 @@ export const PropertiesSection = ({ type }: PropertiesSectionProps) => {
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
+        </div>
+
+        {/* Mobile View More / View Less button */}
+        <div className="flex justify-center mt-6 lg:hidden">
+          <Button onClick={() => setShowAllMobile((s) => !s)} variant="primary" size="default">
+            {showAllMobile ? "View Less" : "View More"}
+          </Button>
         </div>
       </div>
     </section>
